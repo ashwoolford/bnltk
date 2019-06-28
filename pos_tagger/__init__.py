@@ -1,0 +1,1 @@
+from .trained_model import BanglaPosTagger
