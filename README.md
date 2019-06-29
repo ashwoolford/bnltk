@@ -38,6 +38,8 @@ DataFiles().download()
 After successfully downloading the files, then you can use this module.
 
 ```
+from bnltk.pos_tagger import PosTagger
+
 pos_tagger = PosTagger()    
 pos_tagger.loader()
 sentences = 'দুশ্চিন্তার কোন কারণই নাই'

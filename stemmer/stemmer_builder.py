@@ -56,6 +56,6 @@ class BanglaStemmer:
 	    else:
 	        return lin
 
-#print(BanglaStemmer().stem('বলে'))
+#print(BanglaStemmer().stem('তুমিও'))
 
 
