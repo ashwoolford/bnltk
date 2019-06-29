@@ -1,1 +1,1 @@
-from .trained_model import BanglaPosTagger
+from .bn_pos_tagger import PosTagger
