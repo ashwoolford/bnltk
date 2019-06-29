@@ -2,4 +2,5 @@ language: python
 
 python:
   - 3.6
-script: python stemmer/test_stemmer_builder.py    
+  
+script: pytest 
