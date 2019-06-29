@@ -38,8 +38,9 @@ DataFiles().download()
 After successfully downloading the files, then you can use this module.
 
 ```
-from bnltk.pos_tagger import BanglaPosTagger
-t = BanglaPosTagger()
-print(t.bn_pos_tag(' আমার সোনার বাংলা । আমি তোমায় ভালোবাসি ।'))
+pos_tagger = PosTagger()    
+pos_tagger.loader()
+sentences = 'দুশ্চিন্তার কোন কারণই নাই'
+print(pos_tagger.tagger(sentences))  
 
 ```
