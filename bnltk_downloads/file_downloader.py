@@ -39,7 +39,7 @@ class DataFiles:
 		                sys.stdout.write("\r[%s%s]" % ('=' * done, ' ' * (50-done)) )    
 		                sys.stdout.flush()
 		else:
-			print(tag + ' is already exists!!')           	
+			print(tag + 'is already exists!!')           	
 
 		     
 
