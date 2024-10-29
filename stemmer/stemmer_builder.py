@@ -1,7 +1,7 @@
 # Bangla Natural Language Toolkit: Stemmer
 # Rules: Rafi kamal  
-# Copyright (C) 2019 BNLTK Project
-# Author: Ashraf Hossain <asrafhossain197@gmail.com>
+# Copyright (C) 2019-2024 BNLTK Project
+# Author: Asraf Patoary <asrafhossain197@gmail.com>
 
 import string
 import re
@@ -55,7 +55,5 @@ class BanglaStemmer:
 	            return lin[0:new_index]
 	    else:
 	        return lin
-
-#print(BanglaStemmer().stem('তুমিও'))
 
 

@@ -1,7 +1,7 @@
 # Bangla Natural Language Toolkit: Tokenizers
 #
-# Copyright (C) 2019 BNLTK Project
-# Author: Ashraf Hossain <asrafhossain197@gmail.com>
+# Copyright (C) 2019-2024 BNLTK Project
+# Author: Asraf Patoary <asrafhossain197@gmail.com>
 
 import string 
 import re
@@ -12,7 +12,6 @@ class Tokenizers:
 		pass
 
 	def bn_word_tokenizer(self, input_):
-		tokenize_list = []
 		r = re.compile(r'[\s\।{}]+'.format(re.escape(punctuation)))
 		list_ = r.split(input_)
 		list_ = [i for i in list_ if i] 
