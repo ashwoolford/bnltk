@@ -4,16 +4,13 @@
 # Author: Asraf Patoary <asrafhossain197@gmail.com>
 
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 import warnings
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import (
-    Dense,
-    Embedding,
-    Input
-)
+from tensorflow.keras.layers import Dense, Embedding, Input
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
@@ -125,7 +122,7 @@ class PosTagger:
         embedding = Embedding(vocab_size, d_model)(inputs)
         positional_encoding = PositionalEncoding(max_seq_len, d_model)(embedding)
         x = positional_encoding
-        
+
         # Transformer Encoder Layers
         for _ in range(num_layers):
             x = TransformerEncoderLayer(d_model, num_heads, dff, dropout_rate)(
@@ -140,41 +137,47 @@ class PosTagger:
 
     def loader(self):
         warnings.warn("loader() is deprecated now, it has no affect")
-        
 
     def _tuple_maker(self, sentence):
         elements = sentence.split()
-        
+
         result = []
-        
+
         for element in elements:
             if element != "":
-                text, tag = element.rsplit('\\', 1)
+                text, tag = element.rsplit("\\", 1)
                 result.append((text, tag))
-        
+
         return result
 
-    def tagger(self, input_str=''):
-        
+    def tagger(self, input_str=""):
+
         if not isinstance(input_str, str):
-            warnings.warn("tagger() expected a string as arg, but got a non-string value.")
+            warnings.warn(
+                "tagger() expected a string as arg, but got a non-string value."
+            )
             return []
-        
-        if input_str.strip() == '':
+
+        if input_str.strip() == "":
             warnings.warn("tagger() expected a not empty string as arg")
             return []
-        
+
         words = Tokenizers.bn_word_tokenizer(input_str)
-        
+
         tokenized_sentence = self.word_tokenizer.texts_to_sequences([words])
-        tokenized_sentence = pad_sequences(tokenized_sentence, maxlen=MAX_SEQ_LEN, padding='post')
-        
+        tokenized_sentence = pad_sequences(
+            tokenized_sentence, maxlen=MAX_SEQ_LEN, padding="post"
+        )
+
         predictions = self.model.predict(tokenized_sentence, verbose=0)
         predicted_tag_indices = np.argmax(predictions, axis=-1)
         predicted_tags = [
-            self.tag_encoder.inverse_transform([index])[0] for index in predicted_tag_indices[0][:len(words)]
+            self.tag_encoder.inverse_transform([index])[0]
+            for index in predicted_tag_indices[0][: len(words)]
         ]
-        
-        tagged_results = [(word, tag.item()) for word, tag in zip(words, predicted_tags)]
-        
+
+        tagged_results = [
+            (word, tag.item()) for word, tag in zip(words, predicted_tags)
+        ]
+
         return tagged_results

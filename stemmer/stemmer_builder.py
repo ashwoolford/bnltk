@@ -96,11 +96,13 @@ class BanglaStemmer:
                 word = temp_arr[index]
         return word
 
-    def stem(self, lin=''):
-        
+    def stem(self, lin=""):
+
         if not isinstance(lin, str):
-            warnings.warn('stem() expected arg as a string, but got a non-string value.')
-            return ''
+            warnings.warn(
+                "stem() expected arg as a string, but got a non-string value."
+            )
+            return ""
 
         temp_arr = []
 
