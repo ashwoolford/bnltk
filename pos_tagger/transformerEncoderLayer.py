@@ -6,14 +6,19 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, LayerNormalization, Dropout, Layer
 
+
 class TransformerEncoderLayer(Layer):
     def __init__(self, d_model, num_heads, dff, dropout_rate=0.1):
         super().__init__()
-        self.mha = tf.keras.layers.MultiHeadAttention(num_heads=num_heads, key_dim=d_model)
-        self.ffn = tf.keras.Sequential([
-            Dense(dff, activation='relu'),  # Pointwise feed-forward network
-            Dense(d_model)
-        ])
+        self.mha = tf.keras.layers.MultiHeadAttention(
+            num_heads=num_heads, key_dim=d_model
+        )
+        self.ffn = tf.keras.Sequential(
+            [
+                Dense(dff, activation="relu"),  # Pointwise feed-forward network
+                Dense(d_model),
+            ]
+        )
         self.layernorm1 = LayerNormalization(epsilon=1e-6)
         self.layernorm2 = LayerNormalization(epsilon=1e-6)
         self.dropout1 = Dropout(dropout_rate)

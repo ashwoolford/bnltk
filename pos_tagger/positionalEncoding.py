@@ -7,6 +7,7 @@ import tensorflow as tf
 from tensorflow.keras.layers import Layer
 import numpy as np
 
+
 class PositionalEncoding(Layer):
     def __init__(self, position, d_model):
         super().__init__()
@@ -17,13 +18,15 @@ class PositionalEncoding(Layer):
         return pos * angle_rates
 
     def positional_encoding(self, position, d_model):
-        angle_rads = self.get_angles(np.arange(position)[:, np.newaxis],
-                                     np.arange(d_model)[np.newaxis, :],
-                                     d_model)
+        angle_rads = self.get_angles(
+            np.arange(position)[:, np.newaxis],
+            np.arange(d_model)[np.newaxis, :],
+            d_model,
+        )
         angle_rads[:, 0::2] = np.sin(angle_rads[:, 0::2])  # apply sin to even indices
         angle_rads[:, 1::2] = np.cos(angle_rads[:, 1::2])  # apply cos to odd indices
         pos_encoding = angle_rads[np.newaxis, ...]
         return tf.cast(pos_encoding, dtype=tf.float32)
 
     def call(self, x):
-        return x + self.pos_encoding[:, :tf.shape(x)[1], :]
+        return x + self.pos_encoding[:, : tf.shape(x)[1], :]

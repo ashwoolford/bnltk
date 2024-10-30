@@ -13,14 +13,14 @@ import sys
 class DataFiles:
     def __init__(self):
         pass
-    
+
     def downloader(self, url, file_name, tag):
         if not os.path.exists(file_name):
             with open(file_name, "wb") as file:
-                print("Downloading....../"+tag)
+                print("Downloading....../" + tag)
                 response = get(url, stream=True)
-                total_length = response.headers.get('content-length')
-                
+                total_length = response.headers.get("content-length")
+
                 if total_length is None:
                     file.write(response.content)
                 else:
@@ -30,35 +30,41 @@ class DataFiles:
                         dl += len(data)
                         file.write(data)
                         done = int(50 * dl / total_length)
-                        sys.stdout.write("\r[%s%s]" % ('=' * done, ' ' * (50-done)))    
+                        sys.stdout.write("\r[%s%s]" % ("=" * done, " " * (50 - done)))
                         sys.stdout.flush()
         else:
-            print(tag + 'is already exists!!')         	
-    
+            print(tag + "is already exists!!")
+
     def download(self):
         file_name = None
-        tag1 = 'bn_tagged_mod.txt'
-        tag2 = 'pos_tagger.weights.h5'
-        
-        print('platform.system() ', platform.system())
-        
-        if platform.system() == 'Windows':
-            file_name = "C:\\Users\\"+getpass.getuser()
-        elif platform.system() == 'Linux':
-            file_name = "/home/"+getpass.getuser()
-        elif platform.system() == 'Darwin':
-            file_name = "/Users/"+getpass.getuser()
+        tag1 = "bn_tagged_mod.txt"
+        tag2 = "pos_tagger.weights.h5"
+
+        print("platform.system() ", platform.system())
+
+        if platform.system() == "Windows":
+            file_name = "C:\\Users\\" + getpass.getuser()
+        elif platform.system() == "Linux":
+            file_name = "/home/" + getpass.getuser()
+        elif platform.system() == "Darwin":
+            file_name = "/Users/" + getpass.getuser()
         else:
-            raise Exception('Unable to detect OS')
-        
-        corpus_url = 'https://firebasestorage.googleapis.com/v0/b/diu-question.appspot.com/o/nlp_data%2Fbn_tagged_mod.txt?alt=media&token=00f383a3-f913-480b-85c1-971dd8fd6dd9'
-        saved_weights_url = 'https://firebasestorage.googleapis.com/v0/b/diu-question.appspot.com/o/nlp_data%2Fpos_tagger.weights.h5?alt=media&token=2251eedd-dfaf-4572-9bce-b4d293cce980'
-        
-        try:  
-            os.makedirs(file_name+'/bnltk_data/pos_data')
-        except OSError:  
-            print ("Creation of the directory failed or exists")
-            
-        self.downloader(corpus_url, file_name+'/bnltk_data/pos_data/bn_tagged_mod.txt', tag1) 
-        self.downloader(saved_weights_url, file_name+'/bnltk_data/pos_data/pos_tagger.weights.h5', tag2) 
-        print('Done!')
+            raise Exception("Unable to detect OS")
+
+        corpus_url = "https://firebasestorage.googleapis.com/v0/b/diu-question.appspot.com/o/nlp_data%2Fbn_tagged_mod.txt?alt=media&token=00f383a3-f913-480b-85c1-971dd8fd6dd9"
+        saved_weights_url = "https://firebasestorage.googleapis.com/v0/b/diu-question.appspot.com/o/nlp_data%2Fpos_tagger.weights.h5?alt=media&token=2251eedd-dfaf-4572-9bce-b4d293cce980"
+
+        try:
+            os.makedirs(file_name + "/bnltk_data/pos_data")
+        except OSError:
+            print("Creation of the directory failed or exists")
+
+        self.downloader(
+            corpus_url, file_name + "/bnltk_data/pos_data/bn_tagged_mod.txt", tag1
+        )
+        self.downloader(
+            saved_weights_url,
+            file_name + "/bnltk_data/pos_data/pos_tagger.weights.h5",
+            tag2,
+        )
+        print("Done!")

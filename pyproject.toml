@@ -1,0 +1,22 @@
+[tool.black]
+line-length = 88
+target-version = ['py310']  # adjust based on the Python version you use
+include = '\.py$'  # format only Python files with .py extension
+exclude = '''
+(
+  /(
+      # Exclude all non-Python files and directories you'd like black to ignore
+      \.git
+      \.gitignore
+    | myenv
+    | build
+    | dist
+    | docs
+    | .*\.pyc
+    | .*\.pyo
+    | .*\.pyi
+    | .*\.pyx
+    | .*_test.py
+  )/
+)
+'''

@@ -6,7 +6,10 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Layer
 
+
 class MaskingLayer(Layer):
     def call(self, inputs):
         # Create an attention mask to ignore padding tokens (0s in inputs)
-        return tf.cast(tf.math.not_equal(inputs, 0), tf.float32)[:, tf.newaxis, tf.newaxis, :]
+        return tf.cast(tf.math.not_equal(inputs, 0), tf.float32)[
+            :, tf.newaxis, tf.newaxis, :
+        ]

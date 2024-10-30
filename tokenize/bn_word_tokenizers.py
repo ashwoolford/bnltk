@@ -3,16 +3,16 @@
 # Copyright (C) 2019-2024 BNLTK Project
 # Author: Asraf Patoary <asrafhossain197@gmail.com>
 
-import string 
 import re
-from string import punctuation
-
+import warnings
 class Tokenizers:
-	def __init__(self):
-		pass
-
-	def bn_word_tokenizer(self, input_):
-		r = re.compile(r'[\s\।{}]+'.format(re.escape(punctuation)))
-		list_ = r.split(input_)
-		list_ = [i for i in list_ if i] 
-		return list_
+    @staticmethod
+    def bn_word_tokenizer(input=''):
+        if not isinstance(input, str):
+            warnings.warn('bn_word_tokenizer() expected arg as a string, but got a non-string value.')
+            return []
+        
+        pattern = r'[\u0980-\u09FF]+|[^\s]'     # [\u0980-\u09FF]+: Matches one or more Bengali characters.
+        tokens = re.findall(pattern, input)
+        
+        return tokens
