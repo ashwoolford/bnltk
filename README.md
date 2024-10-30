@@ -33,7 +33,7 @@ print(bn_stemmer.stem('হেসেছিলেন'))
 # হাসা
 ```
 
-### Parts of Tagger
+### Parts of speech tagger
 
 To use the Parts of Speech Tagger, please download the pretrained model's weights. Our trained model achieves an accuracy of 96%
 ```
