@@ -11,10 +11,8 @@ import sys
 
 
 class DataFiles:
-    def __init__(self):
-        pass
-
-    def downloader(self, url, file_name, tag):
+    @staticmethod
+    def _downloader(url, file_name, tag):
         if not os.path.exists(file_name):
             with open(file_name, "wb") as file:
                 print("Downloading....../" + tag)
@@ -34,13 +32,12 @@ class DataFiles:
                         sys.stdout.flush()
         else:
             print(tag + "is already exists!!")
-
-    def download(self):
+            
+    @staticmethod
+    def download():
         file_name = None
         tag1 = "bn_tagged_mod.txt"
         tag2 = "pos_tagger.weights.h5"
-
-        print("platform.system() ", platform.system())
 
         if platform.system() == "Windows":
             file_name = "C:\\Users\\" + getpass.getuser()
@@ -59,10 +56,10 @@ class DataFiles:
         except OSError:
             print("Creation of the directory failed or exists")
 
-        self.downloader(
+        DataFiles._downloader(
             corpus_url, file_name + "/bnltk_data/pos_data/bn_tagged_mod.txt", tag1
         )
-        self.downloader(
+        DataFiles._downloader(
             saved_weights_url,
             file_name + "/bnltk_data/pos_data/pos_tagger.weights.h5",
             tag2,
