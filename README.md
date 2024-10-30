@@ -38,7 +38,7 @@ print(bn_stemmer.stem('হেসেছিলেন'))
 To use the Parts of Speech Tagger, please download the pretrained model's weights. Our trained model achieves an accuracy of 96%
 ```
 from bnltk.bnltk_downloads import DataFiles
-DataFiles().download()	
+DataFiles.download()	
 ```
 After successfully downloading the files, you can use this module as follows:
 
