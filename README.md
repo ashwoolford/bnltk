@@ -5,7 +5,7 @@
 
 
 
-BNLTK(Bangla Natural Language Processing Toolkit) is a open-source python package for Bengali Natural Language Processing. It includes modules for Tokenization, Stemming, Parts of speech tagging.
+BNLTK(Bangla Natural Language Processing Toolkit) is an open-source python package for Natural Language Processing in Bangla. It offers functionalities to perform some basic NLP tasks such as Tokenization, Stemming and Parts of speech tagging. BNLTK requires Python version 3.6, 3.7, 3.8, 3.9 or 3.10.
 
 ## installation
 
