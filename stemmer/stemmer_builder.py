@@ -1,61 +1,126 @@
 # Bangla Natural Language Toolkit: Stemmer
-# Rules: Rafi kamal  
-# Copyright (C) 2019 BNLTK Project
-# Author: Ashraf Hossain <asrafhossain197@gmail.com>
+# Rules: Rafi kamal
+# Copyright (C) 2019-2024 BNLTK Project
+# Author: Asraf Patoary <asrafhossain197@gmail.com>
 
-import string
+import warnings
 import re
 
 
 class StaticArrays:
-	rule_words = ['ই', 'ও', 'তো', 'কে', 'তে', 'রা', 'চ্ছি', 'চ্ছিল','চ্ছে', 'চ্ছিস','চ্ছিলেন', 'চ্ছ', 'য়েছে', 'েছ', 'েছে','েছেন', 'রছ', 'রব', 'েল', 'েলো', 'ওয়া', 'েয়ে', 'য়', 'য়ে', 'েয়েছিল', 'েছিল', 'য়েছিল','েয়েছিলেন','ে.েছিলেন', 'েছিলেন', 'লেন', 'দের', 'ে.ে', 'ের','ার','েন', 'বেন', 'িস', 'ছিস', 'ছিলি', 'ছি', 'ছে', 'লি', 'বি','ে', 'টি', 'টির', 'েরটা', 'েরটার', 'টা', 'টার', 'গুলো', 'গুলোর', 'েরগুলো', 'েরগুলোর']
-	rule_dict = {"রছ":"র","রব":"র","েয়ে":"া","েয়েছিল":"া","েয়েছিলেন":"া","ে.েছিলেন":"া.","ে.ে":"া."}        
-	
+    rule_words = [
+        "ই",
+        "ও",
+        "তো",
+        "কে",
+        "তে",
+        "রা",
+        "চ্ছি",
+        "চ্ছিল",
+        "চ্ছে",
+        "চ্ছিস",
+        "চ্ছিলেন",
+        "চ্ছ",
+        "য়েছে",
+        "েছ",
+        "েছে",
+        "েছেন",
+        "রছ",
+        "রব",
+        "েল",
+        "েলো",
+        "ওয়া",
+        "েয়ে",
+        "য়",
+        "য়ে",
+        "েয়েছিল",
+        "েছিল",
+        "য়েছিল",
+        "েয়েছিলেন",
+        "ে.েছিলেন",
+        "েছিলেন",
+        "লেন",
+        "দের",
+        "ে.ে",
+        "ের",
+        "ার",
+        "েন",
+        "বেন",
+        "িস",
+        "ছিস",
+        "ছিলি",
+        "ছি",
+        "ছে",
+        "লি",
+        "বি",
+        "ে",
+        "টি",
+        "টির",
+        "েরটা",
+        "েরটার",
+        "টা",
+        "টার",
+        "গুলো",
+        "গুলোর",
+        "েরগুলো",
+        "েরগুলোর",
+    ]
+    rule_dict = {
+        "রছ": "র",
+        "রব": "র",
+        "েয়ে": "া",
+        "েয়েছিল": "া",
+        "েয়েছিলেন": "া",
+        "ে.েছিলেন": "া.",
+        "ে.ে": "া.",
+    }
+
 
 class BanglaStemmer:
 
-	def __init__(self):
-		pass
-	
-	def repetition_checker(self, word, lin):
-		return word == lin
+    def __init__(self):
+        pass
 
-	def len_checker(self, temp_arr):
-		index = None
-		word = None
-		current_len = -1
+    def _repetition_checker(self, word, lin):
+        return word == lin
 
-		for i in range(0, len(temp_arr)):
-			if len(temp_arr[i]) > current_len:
-				current_len = len(temp_arr[i])
-				index = i
-				word = temp_arr[index]
-		return word  
+    def _len_checker(self, temp_arr):
+        index = None
+        word = None
+        current_len = -1
 
-	def stem(self, lin):
+        for i in range(0, len(temp_arr)):
+            if len(temp_arr[i]) > current_len:
+                current_len = len(temp_arr[i])
+                index = i
+                word = temp_arr[index]
+        return word
 
-	    temp_arr = []
-	    flag = 0
+    def stem(self, lin=""):
 
-	    for word in StaticArrays.rule_words:
-	        if re.search('.*' + word + '$' ,lin):
-	            temp_arr.append(word)
+        if not isinstance(lin, str):
+            warnings.warn(
+                "stem() expected arg as a string, but got a non-string value."
+            )
+            return ""
 
-	    if len(temp_arr) != 0:
-	        longest_word = self.len_checker(temp_arr)
-	        if StaticArrays.rule_dict.get(longest_word):
+        temp_arr = []
 
-	        	sliced = lin.replace(longest_word, StaticArrays.rule_dict[longest_word])
-	        	if self.repetition_checker(sliced, lin):
-	        		return lin[0] + 'া' + lin[2] + 'া'
-	        	else:
-	        		return sliced
-	        else:
-	            new_index = len(lin) - len(longest_word)
-	            return lin[0:new_index]
-	    else:
-	        return lin
+        for word in StaticArrays.rule_words:
+            if re.search(".*" + word + "$", lin):
+                temp_arr.append(word)
 
-#print(BanglaStemmer().stem('তুমিও'))
+        if len(temp_arr) != 0:
+            longest_word = self._len_checker(temp_arr)
+            if StaticArrays.rule_dict.get(longest_word):
 
-
+                sliced = lin.replace(longest_word, StaticArrays.rule_dict[longest_word])
+                if self._repetition_checker(sliced, lin):
+                    return lin[0] + "া" + lin[2] + "া"
+                else:
+                    return sliced
+            else:
+                new_index = len(lin) - len(longest_word)
+                return lin[0:new_index]
+        else:
+            return lin
