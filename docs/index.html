@@ -100,7 +100,7 @@
                                 <div id="step1" class="section-block">
 
                                     <div class="code-block">
-                                        <h6>Default code example:</h6>
+                                        <h6>Installation:</h6>
                                         <div class="shadow m-5 cm">
                                             <pre><code class="language-py">pip install bnltk</code> <br></pre>
                                         </div>
@@ -119,7 +119,7 @@
                                     <h3 class="block-title">Tokenizer</h3>
 
                                     <div class="code-block ">
-                                        <h6>Default code example:</h6>
+                                        <h6>Tokenizer example:</h6>
                                         <div class="shadow  m-5 cm">
                                             <pre><code class="language-py">from bnltk.tokenize import Tokenizers </code> <br><code class="language-py">t = Tokenizers() </code> <br><code class="language-py">print(t.bn_word_tokenizer('আজ আবহাওয়া খুব ভালো।'))</code> <br> <code class="language-py"># ["আজ", "আবহাওয়া", "খুব", "ভালো", "।"]</code> <br></pre>
                                         </div>
@@ -134,7 +134,7 @@
                                     <h3 class="block-title">Stemmer</h3>
 
                                     <div class="code-block">
-                                        <h6>Default code example:</h6>
+                                        <h6>Stemmer example:</h6>
                                         <div class="shadow  m-5 cm">
                                             <pre><code class="language-py">from bnltk.stemmer import BanglaStemmer </code> <br><code class="language-py">bn_stemmer = BanglaStemmer() </code> <br><code class="language-py">print(bn_stemmer.stem('হেসেছিলেন'))</code> <br> <code class="language-py"># হাসা</code> <br></pre>
                                         </div>
@@ -149,7 +149,7 @@
                                         For using the Parts of Tagger you need to download some data files as follows:
                                     </p>
                                     <div class="code-block">
-                                        <h6>Default code example:</h6>
+                                        <h6>Datafiles download example:</h6>
                                         <div class="shadow  m-5 cm">
                                             <pre><code class="language-py">from bnltk.bnltk_downloads import DataFiles </code> <br><code class="language-py">DataFiles.download() </code> <br></pre>
                                         </div>
@@ -161,7 +161,7 @@
                                     </p>
 
                                     <div class="code-block">
-                                        <h6>Default code example:</h6>
+                                        <h6>POS tagger example:</h6>
                                         <div class="shadow  m-5 cm">
                                             <pre><code class="language-py">from bnltk.pos_tagger import PosTagger </code> <br><code class="language-py">p_tagger = PosTagger() </code> <br><code class="language-py">print(p_tagger.tagger('দুশ্চিন্তার কোন কারণই নাই'))</code><br> <code class="language-py"># [('দুশ্চিন্তার', 'NC'), ('কোন', 'JQ'), ('কারণই', 'NC'), ('নাই', 'VM')]</code><br></pre>
                                         </div>
