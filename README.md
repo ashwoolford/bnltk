@@ -18,7 +18,7 @@ pip install bnltk
 **Note**: If you are using version 0.7.6, please see the documentation [here](#version-076)
 
 
-## Version 0.7.7 (latest)
+## Version 0.7.8 (latest)
 
 ### Tokenizer
 

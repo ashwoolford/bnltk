@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="bnltk",
-    version="0.7.7",
+    version="0.7.8",
     author="Asraf Patoary",
     author_email="asrafhossain197@gmail.com",
     description="BNLTK(Bangla Natural Language Processing Toolkit)",
