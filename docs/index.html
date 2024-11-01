@@ -6,9 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BNLTK(Bangla natural language processing toolkit): a python package for Natural language processing in Bangla">
+    <meta name="description"
+        content="BNLTK(Bangla natural language processing toolkit): a python package for Natural language processing in Bangla">
     <meta name="author" content="Asraf Patoary">
-    <meta name="keywords" content="Bangla natural language processing, Natural language processing, BNLTK, NLTK, NLP, BNLP, Parts of speech tagger, POS tagger, Stemmer, Tokenizer">
+    <meta name="keywords"
+        content="Bangla natural language processing, Natural language processing, BNLTK, NLTK, NLP, BNLP, Parts of speech tagger, POS tagger, Stemmer, Tokenizer">
     <meta name="robots" content="index, follow">
     <title>BNLTK(Bangla Natural Language Processing Toolkit): a python package for NLP in Bangla</title>
 
@@ -114,7 +116,7 @@
                             <!--//doc-section-->
 
                             <section id="usage-section" class="doc-section">
-                                <h2 class="section-title">Usage</h2>
+                                <h2 class="section-title">Version 0.7.7 (Latest)</h2>
                                 <div id="tokenizer" class="section-block">
                                     <h3 class="block-title">Tokenizer</h3>
 
@@ -169,6 +171,64 @@
                                     </div>
                                     <!--//code-block-->
                                 </div>
+
+                                <div id="last_version" class="section-block">
+
+                                    <h2 class="section-title">Version 0.7.6 (Jun 29, 2019)</h2>
+                                    <div class="section-block">
+                                        <h3 class="block-title">Tokenizer</h3>
+
+                                        <div class="code-block ">
+                                            <h6>Tokenizer example:</h6>
+                                            <div class="shadow  m-5 cm">
+                                                <pre><code class="language-py">from bnltk.tokenize import Tokenizers </code> <br><code class="language-py">t = Tokenizers() </code> <br><code class="language-py">print(t.bn_word_tokenizer('আজ আবহাওয়া খুব ভালো।'))</code> <br> <code class="language-py"># ["আজ", "আবহাওয়া", "খুব", "ভালো"]</code> <br></pre>
+                                            </div>
+                                        </div>
+                                        <!--//code-block-->
+                                    </div>
+
+
+                                    <div class="section-block">
+                                        <h3 class="block-title">Stemmer</h3>
+
+                                        <div class="code-block">
+                                            <h6>Stemmer example:</h6>
+                                            <div class="shadow  m-5 cm">
+                                                <pre><code class="language-py">from bnltk.stemmer import BanglaStemmer </code> <br><code class="language-py">bn_stemmer = BanglaStemmer() </code> <br><code class="language-py">print(bn_stemmer.stem('হেসেছিলেন'))</code> <br> <code class="language-py"># হাসা</code> <br></pre>
+                                            </div>
+
+                                        </div>
+                                        <!--//code-block-->
+                                    </div>
+
+                                    <div class="section-block">
+                                        <h3 class="block-title">Parts of Speech Tagger</h3>
+                                        <p>
+                                            For using the Parts of Tagger you need to download some data files as
+                                            follows:
+                                        </p>
+                                        <div class="code-block">
+                                            <h6>Datafiles download example:</h6>
+                                            <div class="shadow  m-5 cm">
+                                                <pre><code class="language-py">from bnltk.bnltk_downloads import DataFiles </code> <br><code class="language-py">DataFiles().download() </code> <br></pre>
+                                            </div>
+
+                                        </div>
+
+                                        <p>
+                                            After successfully downloading the files, then you can use this module.
+                                        </p>
+
+                                        <div class="code-block">
+                                            <h6>POS tagger example:</h6>
+                                            <div class="shadow  m-5 cm">
+                                                <pre><code class="language-py">from bnltk.pos_tagger import PosTagger </code> <br><code class="language-py">p_tagger = PosTagger() </code> <br><code class="language-py">p_tagger.loader() </code> <br><code class="language-py">print(p_tagger.tagger('দুশ্চিন্তার কোন কারণই নাই'))</code><br> <code class="language-py"># [('দুশ্চিন্তার', 'NC'), ('কোন', 'JQ'), ('কারণই', 'NC'), ('নাই', 'VM')]</code><br></pre>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <!--//section-block-->
                             </section>
 
@@ -176,33 +236,6 @@
                         <!--//content-inner-->
                     </div>
                     <!--//doc-content-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex ">
@@ -220,6 +253,7 @@
                                     <a class="nav-link scrollto" href="#tokenizer">Tokenizer</a>
                                     <a class="nav-link scrollto" href="#stemmer">Stemmer</a>
                                     <a class="nav-link scrollto" href="#pos">Parts of Speech Tagger</a>
+                                    <a class="nav-link scrollto" href="#last_version">Version 0.7.6</a>
 
                                 </nav>
                                 <!--//nav-->
