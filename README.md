@@ -106,7 +106,6 @@ print(p_tagger.tagger('দুশ্চিন্তার কোন কারণ�
 |                       | Reciprocal (PRC)      |
 |                       | Relative (PRL)        |
 |                       | Wh (PWH)              |
-|                       |                       |
 | Nominal Modifier (J)  | Adjectives (JJ)       |
 |                       | Quantifiers (JQ)      |
 | Demonstratives (D)    | Absolutive (DAB)      |
